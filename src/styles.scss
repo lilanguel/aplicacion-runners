@@ -1,0 +1,52 @@
+/* Definicion de estilos de tema */
+@use '@angular/material'as mat;
+
+// Incluir los estilos comunes de angular material
+@include mat.core();
+
+$custom-primary-map: (50:#F3E5F5,
+  100:#E1BEE7,
+  200:#CE93D8,
+  300:#BA68C8,
+  400:#AB47BC,
+  500:#9C27B0,
+  600:#8E24AA,
+  700:#7B1FA2,
+  800:#6A1B9A,
+  900:#4A148C,
+  contrast:(50:#FCE4EC,
+    100:#F8BBD0,
+    200:#F48FB1,
+    300:#F06292,
+    400:#EC407A,
+    500:#E91E63,
+    600:#D81B60,
+    700:#C2185B,
+    800:#AD1457,
+    900:#880E4F,
+  ));
+
+$custom-accent-map: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// Definimos las paletas basadas en los mapas de colores personalizados
+$primary-palette: mat.define-palette($custom-primary-map);
+$accent-palette: mat.define-palette($custom-accent-map);
+
+// Creamos el objeto del tema personalizado claro
+$custom-theme: mat.define-light-theme((color: (primary: $primary-palette,
+      accent: $accent-palette)));
+
+// Y finalmente incluimos los estilos del tema en todos nuestros componentes
+@include mat.all-component-themes($custom-theme);
+
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
